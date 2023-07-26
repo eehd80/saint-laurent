@@ -32,9 +32,18 @@ button {
   box-sizing: border-box;
 }
 
-fieldset,
-img {
-  border: 0 none;
+fieldset {
+  // img {
+  //   border: 0 none;
+  // }
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
 }
 
 dl,
