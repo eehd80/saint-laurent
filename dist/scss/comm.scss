@@ -1,83 +1,255 @@
 @charset "UTF-8";
-@import "variables", "fonts", "main", "contents", "reset";
+@import "variables", "mixin", "fonts", "reset", "main", "contents";
 
-// comm.css -
+// .wrap {
+//   width: 1200px;
+//   margin: 0 auto;
+
+//   header {
+//     height: 100px;
+//     background: rgb(255, 241, 216);
+//   }
+// }
+
+// .wrap .slide {
+//   height: 300px;
+//   background: blue;
+// }
+
+// @import  "main", "contents";
+
+// comm.scss -
 // 공통요소 : 헤더, 풋터, 버튼, 아이콘, 박스
 
-//공통
+// 공통
 .container {
   padding: 0 4%;
 }
-.sec-collect {
-  margin-top: 100px;
-  a {
-    display: block;
-  }
+.wrap {
+  padding-top: 70px;
 }
-body {
-  background: #000;
-}
-
 #header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
-
-  #logo img {
-    height: 21px;
-    object-fit: contain;
-  }
-
-  .inner {
-    // position: fixed;
+  z-index: 6000;
+  .header-wrap {
     display: flex;
+    // position: fixed;
     justify-content: space-between;
     align-items: center;
-    height: 70px;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    padding: 10px 0px;
+    border-bottom: 1px solid #eee;
+    box-sizing: border-box;
+
+    #logo {
+      position: absolute;
+      // z-index: 1100;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #logo img {
+      height: 21px;
+      object-fit: contain;
+    }
+
+    .material-symbols-outlined {
+      // position: absolute;
+      display: inline-block;
+      font-size: 30px;
+    }
+
+    .inner {
+      // position: fixed;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+      width: 100%;
+    }
+    .btn-g {
+      height: 40px;
+      width: 70px;
+      &::before {
+        font-size: 20px;
+        font-family: "Font Awesome 6 free";
+      }
+    }
   }
-  .btn-g {
-    height: 40px;
-    width: -10%;
-    &::before {
-      font-size: 1.4286rem;
-      font-family: "Font Awesome 6 free";
+  .header-wrap-b {
+    display: flex;
+    // position: fixed;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    padding: 10px 0px;
+    // border-bottom: 1px solid #eee;
+    box-sizing: border-box;
+
+    #logo {
+      position: absolute;
+      // z-index: 1100;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #logo img {
+      height: 21px;
+      object-fit: contain;
+    }
+
+    .material-symbols-outlined {
+      // position: absolute;
+      display: inline-block;
+      font-size: 30px;
+      color: $w;
+    }
+
+    .inner {
+      // position: fixed;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+      width: 100%;
+    }
+    .btn-g {
+      height: 40px;
+      width: 70px;
+      &::before {
+        font-size: 20px;
+        font-family: "Font Awesome 6 free";
+      }
+    }
+  }
+}
+.gnb-wrap {
+  .input-burger {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    &:checked {
+      // input이 선택됬을 때
+      & + label {
+        .bar {
+          background: $w;
+          &:nth-child(2) {
+            transform: rotate(45deg) translate(4px, 4px);
+          }
+          &:nth-child(3) {
+            // display: none;
+            opacity: 0;
+          }
+          &:nth-child(4) {
+            transform: rotate(-45deg) translate(6px, -6px);
+          }
+        }
+      }
+      & ~ #gnb {
+        left: 0;
+      }
     }
   }
 
-  .btn-search::before {
-    content: "\f002";
-    font-family: "Font Awesome 6 free";
-    font-weight: 900;
-    padding: 0;
-    color: #fff;
+  .label-burger {
+    cursor: pointer;
+    position: relative;
+    z-index: 1100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 40px;
+    height: $headerHight;
+    .bar {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: $w;
+      transition: all 0.3s;
+      // display none, block은 트렌지션 적용x
+      // 2개 이상 적용시 all -> 위치값 다시 적용
+    }
+    span {
+      &:nth-child(3) {
+        margin: 5px 0;
+      }
+    }
   }
+  #gnb {
+    // display: none;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    bottom: 0;
+    width: 100%;
+    padding: 30px;
+    background: $b;
+    // rgba(0, 0, 0, 0.8)
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 18%;
+    transition: right 0.3s;
+    .gnb-logo img {
+      width: 250px;
+      margin-bottom: 70px;
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+      }
+    }
 
-  .btn-ham::before {
-    content: "\f007";
-    margin: -10%;
-    font-family: "Font Awesome 6 free";
-    font-weight: 500;
-    color: #fff;
+    li {
+      color: #ffffff;
+      line-height: 30px;
+    }
+    a {
+      color: $w;
+    }
   }
 }
+
+// footer
 #footer {
   position: relative;
   margin-bottom: 60px;
-
   .lst-foot {
     li {
       display: flex;
       justify-content: space-between;
       width: 100%;
-      border-bottom: 1px solid #ffffff;
+      border-bottom: 1px solid $b;
       .iconbox {
-        border-bottom: 1px solid #000;
+        border-bottom: 1px solid #ffffff;
       }
     }
     li:last-child {
-      border-bottom: 1px solid #000;
+      border-bottom: 1px solid #ffffff;
     }
   }
   .lst-sns {
@@ -91,13 +263,13 @@ body {
   li {
     position: relative;
     padding: 5px;
-    color: #ffffff;
+    color: $b;
     align-items: center;
   }
   li:first-child {
     position: relative;
     padding: 5px;
-    color: #ffffff;
+    color: $b;
   }
   .material-icons-outlined {
     position: absolute;
@@ -110,7 +282,7 @@ body {
   display: flex;
   flex-direction: row-reverse;
   margin-right: 10px;
-  color: #ffffff;
+  color: $b;
 }
 .ocean {
   padding: 20px 20px;
@@ -125,14 +297,13 @@ body {
 .li:first-child {
   position: relative;
   padding: 5px;
-  color: #ffffff;
+  color: $b;
 }
-
 .ocean {
   overflow: hidden;
   width: 100%;
-  border-bottom: 1px solid #ffffff;
-  border-top: 1px solid #ffffff;
+  border-bottom: 1px solid $b;
+  border-top: 1px solid $b;
   margin-bottom: 40px;
   padding: 0 0;
   height: 50px;
@@ -143,8 +314,7 @@ body {
   align-items: center;
 }
 .wave {
-  background: url(../../images/comm/white/saintlaurent-logo-slide-white.png)
-    repeat-x;
+  background: url(../../images/comm/footer/slidelogo-black.png) repeat-x;
   // background-size: auto 100%;
   position: absolute;
   z-index: 100;
@@ -154,7 +324,6 @@ body {
   animation: wave 20s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
   transform: translate3d(0, 0, 0);
 }
-
 @keyframes wave {
   0% {
     margin-left: 0;
