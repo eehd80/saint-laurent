@@ -1,7 +1,7 @@
 # list
 
-https://eehd80.github.io/saint-laurent/!list.html
+https://odada.me/saint-laurent/!list.html
 
 ## main
 
-https://eehd80.github.io/saint-laurent/
+https://odada.me/saint-laurent/
